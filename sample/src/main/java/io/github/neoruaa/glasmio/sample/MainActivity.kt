@@ -69,6 +69,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.boundsInWindow
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontFamily
@@ -224,6 +225,7 @@ class MainActivity : ComponentActivity() {
                                     dark, { updatePreferences(preferences.copy(dark = it)) },
                                     reduceTransparency, { updatePreferences(preferences.copy(reduceTransparency = it)) },
                                     rtl, { updatePreferences(preferences.copy(rtl = it)) },
+                                    preferences.glassTuning, { updatePreferences(preferences.copy(glassTuning = it)) },
                                     preferences.hdrEffects, { updatePreferences(preferences.copy(hdrEffects = it)) },
                                     preferences.fpsCounter, { updatePreferences(preferences.copy(fpsCounter = it)) },
                                     preferences.separateNavigationItem, { updatePreferences(preferences.copy(separateNavigationItem = it)) },
@@ -325,6 +327,8 @@ private fun SampleNavigation(
     onReduceTransparency: (Boolean) -> Unit,
     rtl: Boolean,
     onRtl: (Boolean) -> Unit,
+    glassTuning: GlasmioGlassTuning,
+    onGlassTuningChange: (GlasmioGlassTuning) -> Unit,
     hdrEffects: Boolean,
     onHdrEffects: (Boolean) -> Unit,
     fpsCounter: Boolean,
@@ -540,6 +544,7 @@ private fun SampleNavigation(
                                                                 "SettingsTab" -> DemoSettings(
                                                                     layout, currentDark, currentOnDark, currentReduceTransparency,
                                                                     currentOnReduceTransparency, currentRtl, currentOnRtl,
+                                                                    glassTuning, onGlassTuningChange,
                                                                     currentDetachTrailingItem, currentOnDetachTrailingItem,
                                                                     currentHdrEffects, currentOnHdrEffects,
                                                                     currentFpsCounter, currentOnFpsCounter,
@@ -1507,6 +1512,8 @@ private fun DemoSettings(
     onReduceTransparency: (Boolean) -> Unit,
     rtl: Boolean,
     onRtl: (Boolean) -> Unit,
+    glassTuning: GlasmioGlassTuning,
+    onGlassTuningChange: (GlasmioGlassTuning) -> Unit,
     detachTrailingItem: Boolean,
     onDetachTrailingItem: (Boolean) -> Unit,
     hdrEffects: Boolean,
@@ -1519,28 +1526,50 @@ private fun DemoSettings(
             // Keep a full viewport below the independently scrolling large title.
             // Short preference groups must still let the title leave the viewport.
             Column(Modifier.fillParentMaxHeight(), verticalArrangement = Arrangement.spacedBy(20.dp)) {
-                Section("Appearance") {
+                var draftGlassTuning by remember(glassTuning) { mutableStateOf(glassTuning) }
+                Section(stringResource(R.string.sample_settings_appearance)) {
                     GlasmioGroupedList {
-                        GlasmioSwitchPreference(title = { Text("Dark Appearance") }, checked = dark, onCheckedChange = onDark, showTopSeparator = false)
-                        GlasmioSwitchPreference(title = { Text("Reduce Transparency") }, checked = reduceTransparency, onCheckedChange = onReduceTransparency, showTopSeparator = true)
+                        GlasmioSwitchPreference(title = { Text(stringResource(R.string.sample_settings_dark_appearance)) }, checked = dark, onCheckedChange = onDark, showTopSeparator = false)
+                        GlasmioSwitchPreference(title = { Text(stringResource(R.string.sample_settings_reduce_transparency)) }, checked = reduceTransparency, onCheckedChange = onReduceTransparency, showTopSeparator = true)
                         GlasmioSwitchPreference(
                             modifier = Modifier.testTag("settings-hdr-effects"),
-                            title = { Text("HDR Effects") }, checked = hdrEffects, onCheckedChange = onHdrEffects,
+                            title = { Text(stringResource(R.string.sample_settings_hdr_effects)) }, checked = hdrEffects, onCheckedChange = onHdrEffects,
                             isEnabled = !reduceTransparency, showTopSeparator = true,
                         )
                     }
                 }
-                Section("Layout") {
-                    GlasmioGroupedList {
-                        GlasmioSwitchPreference(title = { Text("Right to Left") }, checked = rtl, onCheckedChange = onRtl, showTopSeparator = false)
-                        GlasmioSwitchPreference(title = { Text("Separate Navigation Item") }, checked = detachTrailingItem, onCheckedChange = onDetachTrailingItem, showTopSeparator = true)
+                Section(stringResource(R.string.sample_settings_glass)) {
+                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        val previewLabel = stringResource(R.string.sample_settings_glass_preview)
+                        GlasmioTunedGlassSurface(
+                            tuning = draftGlassTuning,
+                            modifier = Modifier.fillMaxWidth().height(72.dp).semantics { contentDescription = previewLabel },
+                            shape = ContinuousRoundedRectangle(24.dp),
+                        ) {
+                            Text(
+                                stringResource(R.string.sample_settings_glass_preview_text),
+                                modifier = Modifier.padding(horizontal = 20.dp),
+                                style = GlasmioTheme.typography.titleMedium,
+                            )
+                        }
+                        GlasmioGlassTuningPreferences(
+                            tuning = draftGlassTuning,
+                            onTuningChange = { draftGlassTuning = it },
+                            onTuningChangeFinished = onGlassTuningChange,
+                        )
                     }
                 }
-                Section("Diagnostics") {
+                Section(stringResource(R.string.sample_settings_layout)) {
+                    GlasmioGroupedList {
+                        GlasmioSwitchPreference(title = { Text(stringResource(R.string.sample_settings_right_to_left)) }, checked = rtl, onCheckedChange = onRtl, showTopSeparator = false)
+                        GlasmioSwitchPreference(title = { Text(stringResource(R.string.sample_settings_separate_navigation)) }, checked = detachTrailingItem, onCheckedChange = onDetachTrailingItem, showTopSeparator = true)
+                    }
+                }
+                Section(stringResource(R.string.sample_settings_diagnostics)) {
                     GlasmioGroupedList {
                         GlasmioSwitchPreference(
                             modifier = Modifier.testTag("settings-fps-counter"),
-                            title = { Text("FPS Counter") }, checked = fpsCounter, onCheckedChange = onFpsCounter,
+                            title = { Text(stringResource(R.string.sample_settings_fps_counter)) }, checked = fpsCounter, onCheckedChange = onFpsCounter,
                             showTopSeparator = false,
                         )
                     }

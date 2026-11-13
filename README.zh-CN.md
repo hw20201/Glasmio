@@ -50,7 +50,7 @@ Glasmio 为 Android 独立实现这些效果和交互，不执行 Apple 的 Meta
 | `glasmio-glass` | 背景录制、模糊、折射、高光、阴影、液态菜单形变 |
 | `glasmio-ui` | 按钮、开关、滑块、输入框、列表、菜单、弹窗、Sheet、工具栏、导航 |
 | `glasmio-scaffold` | 窗口边距、折叠标题、惰性加载页面、过度滚动、刷新、Sheet 状态 |
-| `glasmio-preference` | 偏好设置行、开关、选项和带验证的文本编辑 |
+| `glasmio-preference` | 偏好设置行、开关、选项、文本编辑和可复用的毛玻璃调参面板 |
 | `glasmio-icons` | 语义化符号名称、宿主提供的 SF 字体渲染、可替换的图标解析器 |
 | `sample` | 支持浅色、深色、RTL 和降低透明度模式的交互式组件目录 |
 
@@ -75,7 +75,9 @@ adb install -r sample/build/outputs/apk/debug/sample-debug.apk
 
 示例应用展示材质、控件、导航、列表、偏好设置、文本样式、搜索、菜单和 Sheet。Home、Materials、Settings 和 About 标签共用导航栏，并配有独立的悬浮搜索按钮。每个页面各自管理折叠标题和渐进式边缘模糊，页面之间只共享顶部工具栏按钮。根标签之间使用淡入淡出，详情页使用 Glasmio 的 iOS 风格转场和侧滑返回交互。示例应用可独立于 MeiloX 构建。
 
-Settings 中的持久化选项会影响 Demo，其中 HDR Effects 和 FPS Counter 默认关闭。帧率计数器显示窗口渲染帧率和近期 1% Low，不会额外请求动画帧。偏好设置组件示例位于 Controls 的 Preference Rows 中。
+Settings 中的持久化选项会影响 Demo，其中 HDR Effects 和 FPS Counter 默认关闭。帧率计数器显示窗口渲染帧率和近期 1% Low，不会额外请求动画帧。偏好设置组件示例位于 Controls 的 Preference Rows 中。Settings 另含毛玻璃实时预览，参数在松手后保存。
+
+毛玻璃调参模型、跨项目用法和简体中文资源说明见[毛玻璃设置指南](docs/glass-settings.zh-CN.md)。`glasmio-preference` 的调参面板会根据系统语言自动切换英文或简体中文。
 
 使用 SF Pro 和其真正的斜体字体构建 Demo：
 

@@ -1,0 +1,15 @@
+<resources>
+    <string name="glasmio_glass_tuning_title">毛玻璃参数</string>
+    <string name="glasmio_glass_blur_title">模糊半径</string>
+    <string name="glasmio_glass_blur_description">调节背景采样后的柔化程度。</string>
+    <string name="glasmio_glass_refraction_height_title">折射高度</string>
+    <string name="glasmio_glass_refraction_height_description">设置玻璃透镜的垂直深度。</string>
+    <string name="glasmio_glass_refraction_amount_title">折射强度</string>
+    <string name="glasmio_glass_refraction_amount_description">控制光线穿过表面时的弯折幅度。</string>
+    <string name="glasmio_glass_tint_title">色调强度</string>
+    <string name="glasmio_glass_tint_description">调节主题强调色在玻璃上的覆盖程度。</string>
+    <string name="glasmio_glass_surface_alpha_title">表面不透明度</string>
+    <string name="glasmio_glass_surface_alpha_description">调节表面颜色覆盖背景的程度。</string>
+    <string name="glasmio_glass_dp_value">%1$s dp</string>
+    <string name="glasmio_glass_percent_value">%1$d%%</string>
+</resources>

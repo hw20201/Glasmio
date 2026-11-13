@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Glasmio</string>
+    <string name="sample_settings_appearance">Appearance</string>
+    <string name="sample_settings_dark_appearance">Dark Appearance</string>
+    <string name="sample_settings_reduce_transparency">Reduce Transparency</string>
+    <string name="sample_settings_hdr_effects">HDR Effects</string>
+    <string name="sample_settings_glass">Glass material</string>
+    <string name="sample_settings_glass_preview">Live frosted-glass preview</string>
+    <string name="sample_settings_layout">Layout</string>
+    <string name="sample_settings_right_to_left">Right to Left</string>
+    <string name="sample_settings_separate_navigation">Separate Navigation Item</string>
+    <string name="sample_settings_diagnostics">Diagnostics</string>
+    <string name="sample_settings_fps_counter">FPS Counter</string>
+    <string name="sample_settings_glass_preview_text">Glasmio frosted glass</string>
+</resources>

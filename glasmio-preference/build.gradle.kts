@@ -10,4 +10,5 @@ dependencies {
     api("androidx.compose.material3:material3:1.4.0")
     testImplementation("junit:junit:4.13.2")
     api(project(":glasmio-ui"))
+    api(project(":glasmio-glass"))
 }

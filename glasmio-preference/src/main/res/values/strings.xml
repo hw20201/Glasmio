@@ -1,0 +1,15 @@
+<resources>
+    <string name="glasmio_glass_tuning_title">Frosted glass</string>
+    <string name="glasmio_glass_blur_title">Blur radius</string>
+    <string name="glasmio_glass_blur_description">Softens the sampled background.</string>
+    <string name="glasmio_glass_refraction_height_title">Refraction height</string>
+    <string name="glasmio_glass_refraction_height_description">Sets the vertical depth of the glass lens.</string>
+    <string name="glasmio_glass_refraction_amount_title">Refraction amount</string>
+    <string name="glasmio_glass_refraction_amount_description">Controls how strongly light bends through the surface.</string>
+    <string name="glasmio_glass_tint_title">Tint strength</string>
+    <string name="glasmio_glass_tint_description">Adjusts the accent-color wash over the glass.</string>
+    <string name="glasmio_glass_surface_alpha_title">Surface opacity</string>
+    <string name="glasmio_glass_surface_alpha_description">Adjusts how strongly the surface color covers the backdrop.</string>
+    <string name="glasmio_glass_dp_value">%1$s dp</string>
+    <string name="glasmio_glass_percent_value">%1$d%%</string>
+</resources>

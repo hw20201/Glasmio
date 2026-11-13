@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Glasmio</string>
+    <string name="sample_settings_appearance">外观</string>
+    <string name="sample_settings_dark_appearance">深色外观</string>
+    <string name="sample_settings_reduce_transparency">降低透明度</string>
+    <string name="sample_settings_hdr_effects">HDR 效果</string>
+    <string name="sample_settings_glass">毛玻璃材质</string>
+    <string name="sample_settings_glass_preview">毛玻璃实时预览</string>
+    <string name="sample_settings_layout">布局</string>
+    <string name="sample_settings_right_to_left">从右向左</string>
+    <string name="sample_settings_separate_navigation">分离导航项</string>
+    <string name="sample_settings_diagnostics">诊断</string>
+    <string name="sample_settings_fps_counter">帧率计数器</string>
+    <string name="sample_settings_glass_preview_text">Glasmio 毛玻璃</string>
+</resources>
