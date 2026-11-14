@@ -67,7 +67,7 @@ private fun NavDemoScreen() {
     var style by rememberSaveable { mutableIntStateOf(0) }
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
-        contentPadding = PaddingValues(horizontal = 20.dp, top = 64.dp, bottom = 32.dp),
+        contentPadding = PaddingValues(start = 20.dp, top = 64.dp, end = 20.dp, bottom = 32.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),
     ) {
         item {
