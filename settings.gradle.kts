@@ -6,4 +6,4 @@ dependencyResolutionManagement {
     repositories { google(); mavenCentral() }
 }
 rootProject.name = "Glasmio"
-include(":glasmio-core", ":glasmio-glass", ":glasmio-ui", ":glasmio-scaffold", ":glasmio-preference", ":glasmio-icons", ":sample")
+include(":glasmio-core", ":glasmio-glass", ":glasmio-ui", ":glasmio-scaffold", ":glasmio-preference", ":glasmio-icons", ":sample", ":nav-demo")

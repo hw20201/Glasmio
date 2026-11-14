@@ -1,4 +1,4 @@
-name: Build sample APK
+name: Build demo APKs
 
 on:
   workflow_dispatch:
@@ -43,4 +43,22 @@ jobs:
         with:
           name: Glasmio-sample-debug-apk
           path: sample/build/outputs/apk/debug/sample-debug.apk
+          if-no-files-found: error
+
+      - name: Build nav demo (debug)
+        run: ./gradlew :nav-demo:assembleDebug --stacktrace
+
+      - name: Verify nav demo APK
+        run: |
+          APK=nav-demo/build/outputs/apk/debug/nav-demo-debug.apk
+          ls -l "$APK"
+          sha256sum "$APK"
+          AAPT2=$(find "$ANDROID_HOME/build-tools" -name aapt2 -type f | head -1)
+          "$AAPT2" dump badging "$APK" | head -3
+
+      - name: Upload nav demo APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: NavDemo-debug-apk
+          path: nav-demo/build/outputs/apk/debug/nav-demo-debug.apk
           if-no-files-found: error
